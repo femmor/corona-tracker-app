@@ -5,7 +5,7 @@ import styles from "../Charts/Chart.module.css";
 // Fetch API Data
 import { fetchDailyData } from "../../api";
 
-const Chart = () => {
+const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
   const [dailyData, setDailyData] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const Chart = () => {
     };
 
     fetchAPI();
-  });
+  }, []);
 
   const lineChart =
     dailyData.length !== 0 ? (
@@ -40,7 +40,32 @@ const Chart = () => {
       />
     ) : null;
 
-  return <div className={styles.container}>{lineChart}</div>;
+  const barChart = confirmed ? (
+    <Bar
+      data={{
+        labels: ["Infected", "Recovered", "Death"],
+        datasets: [
+          {
+            label: "People",
+            backgroundColor: [
+              "rgba(212, 0, 255, 1)",
+              "rgba(0, 255, 42, 1)",
+              "rgba(255, 0, 0, 1)",
+            ],
+            data: [confirmed.value, recovered.value, deaths.value],
+          },
+        ],
+      }}
+      options={{
+        legend: { display: false },
+        title: { display: true, text: `Current state in ${country}` },
+      }}
+    />
+  ) : null;
+
+  return (
+    <div className={styles.container}>{country ? barChart : lineChart}</div>
+  );
 };
 
 export default Chart;
