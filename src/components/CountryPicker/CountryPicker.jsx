@@ -1,7 +1,6 @@
 import React from "react";
 
-const CountryPicker = ({ data }) => {
-  console.log(data);
+const CountryPicker = () => {
   return <div></div>;
 };
 
