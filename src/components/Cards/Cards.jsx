@@ -42,7 +42,13 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             </CardContent>
           </Grid>
 
-          <Grid item component={Card}>
+          <Grid
+            item
+            component={Card}
+            xs={12}
+            md={3}
+            className={cx(styles.card, styles.recovered)}
+          >
             <CardContent>
               <Typography color="textSecondary" gutterBottom>
                 Recovered
@@ -64,7 +70,13 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             </CardContent>
           </Grid>
 
-          <Grid item component={Card}>
+          <Grid
+            item
+            component={Card}
+            xs={12}
+            md={3}
+            className={cx(styles.card, styles.deaths)}
+          >
             <CardContent>
               <Typography color="textSecondary" gutterBottom>
                 Deaths
