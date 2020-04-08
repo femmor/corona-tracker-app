@@ -13,16 +13,20 @@ import CoronaImage from "./images/covid-19_logo.png";
 
 class App extends Component {
   state = {
+    // Initial data and country states
     data: {},
     country: "",
   };
 
+  // Making a request to Fetch data from the API in /api
   async componentDidMount() {
     const fetchedData = await fetchData();
 
+    // set the data fetched to the state
     this.setState({ data: fetchedData });
   }
 
+  // Handle fetching country data from API in the countrypicker component
   handleCountryChange = async (country) => {
     // fetch Data
     const fetchedData = await fetchData(country);

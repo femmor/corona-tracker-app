@@ -2,6 +2,7 @@ import axios from "axios";
 
 const url = "https://covid19.mathdro.id/api";
 
+// Asyncronous fetch data function which returns only the data needed
 export const fetchData = async (country) => {
   let changeableUrl = url;
 
@@ -14,7 +15,7 @@ export const fetchData = async (country) => {
     const {
       data: { confirmed, recovered, deaths, lastUpdate },
     } = await axios.get(changeableUrl);
-    // get and return data
+    // get and return only useful data
     return { confirmed, recovered, deaths, lastUpdate };
   } catch (error) {}
 };
